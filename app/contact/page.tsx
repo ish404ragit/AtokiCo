@@ -4,7 +4,12 @@ import type React from "react"
 
 import { useState } from "react"
 import Image from "next/image"
-import { MapPin, Phone, Printer, Mail, ArrowRight } from "lucide-react"
+import Link from "next/link"
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
+
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -21,198 +26,197 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // This would be where you'd handle the form submission
     console.log("Form submitted:", formData)
-    // Reset form after submission
-    setFormData({ name: "", email: "", subject: "", message: "" })
+    // Here you would typically send the data to your backend
     alert("Message sent successfully!")
+    setFormData({ name: "", email: "", subject: "", message: "" })
   }
 
   return (
-    <main>
+    <div className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative bg-blue-950 h-[300px] flex items-center">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: "url('/placeholder.svg?height=300&width=1200')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            opacity: 0.7,
-          }}
-        />
-        <div className="container mx-auto px-4 z-10">
-          <div className="flex justify-center mb-8">
-            <div className="flex gap-6">
-              <Image src="/placeholder.svg?height=40&width=40" alt="Icon 1" width={40} height={40} />
-              <Image src="/placeholder.svg?height=40&width=40" alt="Icon 2" width={40} height={40} />
-              <Image src="/placeholder.svg?height=40&width=40" alt="Icon 3" width={40} height={40} />
+      <section className="relative bg-[#001a2c] text-white">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/placeholder.svg?height=800&width=1600&text=Contact+Us"
+            alt="Contact Us"
+            fill
+            className="object-cover opacity-50"
+            priority
+          />
+        </div>
+        <div className="container relative z-10 mx-auto px-4 py-16 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-center space-y-8 text-center">
+            <div className="flex space-x-4">
+              <Image src="/placeholder.svg?height=50&width=50" alt="Icon 1" width={50} height={50} />
+              <Image src="/placeholder.svg?height=50&width=50" alt="Icon 2" width={50} height={50} />
+              <Image src="/placeholder.svg?height=50&width=50" alt="Icon 3" width={50} height={50} />
+            </div>
+            <h1 className="text-5xl font-bold">Contact</h1>
+            <div className="flex items-center space-x-2">
+              <Link href="/" className="text-gray-300 hover:text-white">
+                HOME
+              </Link>
+              <span>/</span>
+              <span className="bg-blue-400 px-3 py-1 text-sm font-medium uppercase text-white">CONTACT</span>
             </div>
           </div>
-          <h1 className="text-4xl font-bold text-white text-center">Contact</h1>
-          <div className="flex justify-center mt-8">
-            <div className="bg-yellow-500 px-4 py-2 text-white font-medium">CONTACT</div>
-          </div>
         </div>
+        <div className="h-6 w-full bg-blue-400/20"></div>
       </section>
-
-      {/* Decorative Line */}
-      <div className="w-full h-6 bg-yellow-500 bg-opacity-30 flex items-center">
-        <div className="container mx-auto">
-          <div className="border-t-2 border-dashed border-yellow-500 w-full"></div>
-        </div>
-      </div>
 
       {/* Contact Section */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row gap-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* Contact Details */}
-            <div className="md:w-1/3 bg-yellow-500 text-white p-8 rounded-md">
-              <h2 className="text-xl font-bold mb-6 flex items-center">
+            <div className="bg-blue-400 p-8 text-white">
+              <h2 className="mb-8 flex items-center text-xl font-bold">
                 <span className="mr-2">—</span> Contact Details
               </h2>
-
               <div className="space-y-8">
-                <div className="flex items-start">
-                  <div className="mr-4 mt-1">
-                    <MapPin size={24} />
+                <div className="flex items-start space-x-4">
+                  <div className="mt-1">
+                    <MapPin className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Head Office</h3>
-                    <p>2-36-12 Higashi-Otsuka,</p>
-                    <p>Toshima, Tokyo 170-0005,</p>
-                    <p>Japan</p>
+                    <p className="font-medium">Head Office</p>
+                    <p>791‑1 Kamisago, Yachimata‑shi,</p>
+                    <p>Chiba‑ken 289‑1125, Japan</p>
                   </div>
                 </div>
-
-                <div className="flex items-start">
-                  <div className="mr-4 mt-1">
-                    <Phone size={24} />
+                <div className="flex items-start space-x-4">
+                  <div className="mt-1">
+                    <Phone className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Phone</h3>
-                    <p>+81-90-5891-5891</p>
+                    <p className="font-medium">Phone</p>
+                    <p>+81-90-1227-3369</p>
                   </div>
                 </div>
-
-                <div className="flex items-start">
-                  <div className="mr-4 mt-1">
-                    <Printer size={24} />
+                <div className="flex items-start space-x-4">
+                  <div className="mt-1">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Fax</h3>
-                    <p>+81-3-3295-7071</p>
+                    <p className="font-medium">Fax</p>
+                    <p>+81-3-5395-7671</p>
                   </div>
                 </div>
-
-                <div className="flex items-start">
-                  <div className="mr-4 mt-1">
-                    <Mail size={24} />
+                <div className="flex items-start space-x-4">
+                  <div className="mt-1">
+                    <Mail className="h-6 w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold mb-1">Email</h3>
-                    <p>mail@nippontrading.jp</p>
+                    <p className="font-medium">Email</p>
+                    <p>mail@atoki.jp</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Contact Form */}
-            <div className="md:w-2/3 bg-white p-8 rounded-md shadow-sm">
-              <h2 className="text-2xl font-bold mb-2">Message Us</h2>
-              <div className="h-1 w-12 bg-yellow-500 mb-6"></div>
-              <p className="text-gray-500 mb-6">
+            <div className="lg:col-span-2 bg-white p-8 shadow-md">
+              <h2 className="mb-8 text-2xl font-bold">Message Us</h2>
+              <div className="h-1 w-12 bg-blue-400 mb-6"></div>
+              <p className="mb-6 text-sm text-gray-500">
                 Your email address will not be published. Required fields are marked with *
               </p>
-
-              <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                  <input
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div>
+                  <Input
                     type="text"
                     name="name"
+                    placeholder="Name"
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Name"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     required
+                    className="w-full"
                   />
                 </div>
-
-                <div className="mb-4">
-                  <input
+                <div>
+                  <Input
                     type="email"
                     name="email"
+                    placeholder="Email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Email"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     required
+                    className="w-full"
                   />
                 </div>
-
-                <div className="mb-4">
-                  <input
+                <div>
+                  <Input
                     type="text"
                     name="subject"
+                    placeholder="Subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="Subject"
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     required
+                    className="w-full"
                   />
                 </div>
-
-                <div className="mb-6">
-                  <textarea
+                <div>
+                  <Textarea
                     name="message"
+                    placeholder="Message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Message"
-                    rows={6}
-                    className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-500"
                     required
-                  ></textarea>
+                    className="min-h-[150px] w-full"
+                  />
                 </div>
-
-                <button
-                  type="submit"
-                  className="bg-gray-900 text-white px-6 py-3 rounded-md font-medium flex items-center hover:bg-gray-800 transition-colors"
-                >
-                  SEND MESSAGE <ArrowRight className="ml-2" size={16} />
-                </button>
+                <div>
+                  <Button type="submit" className="bg-black hover:bg-gray-800 text-white">
+                    SEND MESSAGE <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </div>
               </form>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Map Section - Placeholder */}
-      <section className="h-[400px] relative">
-        <div className="absolute inset-0 bg-gray-200 flex items-center justify-center">
-          <div className="text-center">
-            <p className="text-gray-500 mb-2">Map would be displayed here</p>
-            <p className="text-gray-400 text-sm">Google Maps or other map integration</p>
+      {/* Map Section */}
+      <section className="py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="h-[400px] w-full bg-gray-200 flex items-center justify-center">
+            <p className="text-gray-500">Map would be embedded here</p>
           </div>
         </div>
       </section>
 
       {/* Partners Section */}
-      <section className="py-10 bg-gray-100">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-wrap justify-center items-center gap-8">
-            {Array.from({ length: 10 }).map((_, index) => (
-              <Image
-                key={index}
-                src={`/placeholder.svg?height=40&width=100&text=PARTNER`}
-                alt={`Partner ${index + 1}`}
-                width={100}
-                height={40}
-              />
+      <section className="border-t border-gray-200 py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-wrap items-center justify-center gap-8">
+            {Array.from({ length: 10 }).map((_, i) => (
+              <div key={i} className="h-12 w-24">
+                <Image
+                  src={`/placeholder.svg?height=48&width=96&text=Partner+${i + 1}`}
+                  alt={`Partner ${i + 1}`}
+                  width={96}
+                  height={48}
+                  className="h-full w-full object-contain grayscale"
+                />
+              </div>
             ))}
           </div>
         </div>
       </section>
-    </main>
+    </div>
   )
 }
